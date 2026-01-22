@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abel & Mary | Wedding Union</title>
+
+    <!-- Google Fonts: Playfair Display, Lato, and Noto Sans Ethiopic for Amharic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+Ethiopic:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* * ==========================================
+         * CORE VARIABLES & RESET
+         * ==========================================
+         */
+        :root {
+            /* Ethiopian Orthodox Palette */
+            --c-gold: #D4AF37;
+            --c-gold-dim: #b59021;
+            --c-red: #8a1c1c;
+            /* Deep velvet red */
+            --c-green: #2e5936;
+            /* Subtle forest green */
+            --c-cream: #FCFBF7;
+            /* Parchment/fabric tone */
+            --c-text: #2C2C2C;
+            --c-text-light: #666666;
+            --c-white: #FFFFFF;
+
+            /* Spacing */
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --font-amharic: 'Noto Sans Ethiopic', sans-serif;
+
+            /* Transitions */
+            --transition-std: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--c-cream);
+            color: var(--c-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--c-text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-std);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* * ==========================================
+         * UTILITIES & ANIMATIONS
+         * ==========================================
+         */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gold {
+            color: var(--c-gold);
+        }
+
+        .text-red {
+            color: var(--c-red);
+        }
+
+        /* Fade In Animation classes */
+        .fade-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pattern Overlay inspired by Ethiopian Cross lattice */
+        .pattern-bg {
+            background-image:
+                radial-gradient(var(--c-gold) 1px, transparent 1px),
+                radial-gradient(var(--c-gold) 1px, var(--c-cream) 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.15;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* * ==========================================
+         * HERO SECTION
+         * ==========================================
+         */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: var(--spacing-md);
+            border-bottom: 5px solid var(--c-gold);
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(20, 10, 5, 0.75), rgba(46, 89, 54, 0.4));
+            z-index: 1;
+        }
+
+        .hero-cross {
+            width: 100px;
+            height: 100px;
+            margin-bottom: var(--spacing-md);
+            fill: var(--c-gold);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+            animation: pulse 3s infinite ease-in-out;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--c-gold);
+            /* Gold text on dark background */
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--c-cream);
+            margin-bottom: var(--spacing-md);
+            z-index: 2;
+            font-weight: 300;
+        }
+
+        header .date-location {
+            font-size: 1.1rem;
+            color: #f0f0f0;
+            border-top: 1px solid var(--c-gold);
+            border-bottom: 1px solid var(--c-gold);
+            padding: var(--spacing-sm) 2rem;
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ethiopian Orthodox Corner Ornaments */
+        .ornament {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            pointer-events: none;
+            fill: none;
+            stroke: var(--c-gold);
+            stroke-width: 1.5;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .ornament-tl {
+            top: 20px;
+            left: 20px;
+        }
+
+        .ornament-tr {
+            top: 20px;
+            right: 20px;
+            transform: scaleX(-1);
+        }
+
+        .ornament-bl {
+            bottom: 20px;
+            left: 20px;
+            transform: scaleY(-1);
+        }
+
+        .ornament-br {
+            bottom: 20px;
+            right: 20px;
+            transform: scale(-1);
+        }
+
+        /* Mobile adjustment for ornaments */
+        @media (max-width: 768px) {
+            .ornament {
+                width: 80px;
+                height: 80px;
+            }
+
+            header h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* * ==========================================
+         * BLESSING SECTION
+         * ==========================================
+         */
+        #blessing {
+            padding: var(--spacing-lg) 0;
+            background-color: white;
+            position: relative;
+        }
+
+        /* Decorative border top */
+        #blessing::before {
+            content: "";
+            display: block;
+            height: 4px;
+            background: linear-gradient(90deg, var(--c-green), var(--c-gold), var(--c-red));
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        .blessing-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-family: var(--font-heading);
+            color: var(--c-text);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .verse-ref {
+            display: block;
+            margin-top: var(--spacing-sm);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            color: var(--c-gold-dim);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* * ==========================================
+         * COUNTDOWN SECTION
+         * ==========================================
+         */
+        #countdown-section {
+            padding: var(--spacing-lg) 0;
+            background-color: var(--c-red);
+            color: var(--c-white);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            max-width: 800px;
+            margin: var(--spacing-md) auto 0;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            /* subtle gold border */
+        }
+
+        .time-box .number {
+            display: block;
+            font-size: 2.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--c-gold);
+        }
+
+        .time-box .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* * ==========================================
+         * EVENTS SCHEDULE
+         * ==========================================
+         */
+        #events {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Underline effect */
+        .section-title::after {
+            content: "✥";
+            display: block;
+            color: var(--c-gold);
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 2px solid var(--c-gold);
+            padding-left: var(--spacing-md);
+        }
+
+        .event-item {
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .event-item::before {
+            content: "";
+            width: 16px;
+            height: 16px;
+            background: var(--c-red);
+            border: 2px solid var(--c-gold);
+            border-radius: 50%;
+            position: absolute;
+            left: calc(-1 * var(--spacing-md) - 9px);
+            top: 5px;
+        }
+
+        .event-time {
+            font-weight: 700;
+            color: var(--c-green);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .event-details {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid var(--c-gold);
+        }
+
+        /* * ==========================================
+         * GALLERY SECTION
+         * ==========================================
+         */
+        #gallery {
+            padding: var(--spacing-lg) 0;
+            background-color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        /* CSS-Only Placeholder Images */
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            z-index: 2;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* * ==========================================
+         * FOOTER
+         * ==========================================
+         */
+        footer {
+            background-color: var(--c-text);
+            color: var(--c-cream);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            position: relative;
+            /* For flower animation container */
+            overflow: hidden;
+            /* Keep flowers inside */
+        }
+
+        .footer-cross {
+            width: 40px;
+            fill: var(--c-gold);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            z-index: 2;
+        }
+
+        .amharic-quote {
+            font-size: 1.4rem;
+            margin: var(--spacing-md) 0;
+            color: var(--c-gold);
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            font-family: var(--font-amharic);
+            line-height: 1.8;
+        }
+
+        /* Flower Animation CSS */
+        .flower-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            top: -10px;
+            background-color: var(--c-white);
+            border-radius: 100% 0 100% 0;
+            /* Petal shape */
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+
+        .petal.red {
+            background-color: var(--c-red);
+        }
+
+        .petal.gold {
+            background-color: var(--c-gold);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg) translateX(0px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(400px) rotate(360deg) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* * ==========================================
+         * MEDIA QUERIES
+         * ==========================================
+         */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            .event-item::before {
+                display: none;
+            }
+
+            .event-details {
+                border-left: 3px solid var(--c-gold);
+                border-top: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Subtle background pattern -->
+    <div class="pattern-bg"></div>
+
+    <!-- Header / Hero -->
+    <header class="fade-on-scroll">
+        <div class="video-background">
+            <video autoplay muted loop playsinline>
+                <source src="grok-video-521ca23d-de42-4c4b-9031-06189be9d2cb.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <!-- Corner Ornaments (Ethiopian Lattice Style) -->
+        <svg class="ornament ornament-tl" viewBox="0 0 100 100">
+            <path d="M5,5 L95,5 L95,25 L25,25 L25,95 L5,95 Z" stroke="var(--c-gold)" fill="none" />
+            <path d="M15,15 L85,15 L85,35 L35,35 L35,85 L15,85 Z" stroke="var(--c-gold)" fill="none" opacity="0.7" />
+            <rect x="5" y="5" width="10" height="10" fill="var(--c-gold)" />
+            <circle cx="25" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="95" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="25" cy="95" r="2" fill="var(--c-gold)" />
+        </svg>
+        <svg class="ornament ornament-tr" viewBox="0 0 100 100">
+            <path d="M5,5 L95,5 L95,25 L25,25 L25,95 L5,95 Z" stroke="var(--c-gold)" fill="none" />
+            <path d="M15,15 L85,15 L85,35 L35,35 L35,85 L15,85 Z" stroke="var(--c-gold)" fill="none" opacity="0.7" />
+            <rect x="5" y="5" width="10" height="10" fill="var(--c-gold)" />
+            <circle cx="25" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="95" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="25" cy="95" r="2" fill="var(--c-gold)" />
+        </svg>
+        <svg class="ornament ornament-bl" viewBox="0 0 100 100">
+            <path d="M5,5 L95,5 L95,25 L25,25 L25,95 L5,95 Z" stroke="var(--c-gold)" fill="none" />
+            <path d="M15,15 L85,15 L85,35 L35,35 L35,85 L15,85 Z" stroke="var(--c-gold)" fill="none" opacity="0.7" />
+            <rect x="5" y="5" width="10" height="10" fill="var(--c-gold)" />
+            <circle cx="25" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="95" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="25" cy="95" r="2" fill="var(--c-gold)" />
+        </svg>
+        <svg class="ornament ornament-br" viewBox="0 0 100 100">
+            <path d="M5,5 L95,5 L95,25 L25,25 L25,95 L5,95 Z" stroke="var(--c-gold)" fill="none" />
+            <path d="M15,15 L85,15 L85,35 L35,35 L35,85 L15,85 Z" stroke="var(--c-gold)" fill="none" opacity="0.7" />
+            <rect x="5" y="5" width="10" height="10" fill="var(--c-gold)" />
+            <circle cx="25" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="95" cy="25" r="2" fill="var(--c-gold)" />
+            <circle cx="25" cy="95" r="2" fill="var(--c-gold)" />
+        </svg>
+
+        <!-- SVG Stylized Ethiopian Cross -->
+        <svg class="hero-cross" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M45,5 L55,5 L55,35 L85,35 L85,45 L55,45 L55,55 L75,55 L75,75 L55,75 L55,95 L45,95 L45,75 L25,75 L25,55 L45,55 L45,45 L15,45 L15,35 L45,35 Z"
+                fill="currentColor" />
+            <circle cx="50" cy="50" r="5" fill="var(--c-cream)" />
+            <rect x="48" y="0" width="4" height="100" fill="currentColor" opacity="0.3" />
+            <rect x="0" y="48" width="100" height="4" fill="currentColor" opacity="0.3" />
+            <!-- Added Detail to Cross -->
+            <rect x="42" y="42" width="16" height="16" fill="none" stroke="var(--c-cream)" stroke-width="1"
+                transform="rotate(45 50 50)" />
+        </svg>
+
+        <span class="subtitle">The Holy Matrimony Of</span>
+        <h1>Abel & Mary</h1>
+        <div class="date-location">
+            <span>Sunday, February 1, 2026</span> <br>
+            <span>Addis Ababa, Ethiopia</span>
+        </div>
+    </header>
+
+    <!-- Blessing Section -->
+    <section id="blessing" class="text-center fade-on-scroll">
+        <div class="container">
+            <p class="blessing-text">
+                "In the name of the Father, and of the Son, and of the Holy Spirit, One God, Amen. <br><br>
+                Two are better than one, because they have a good return for their labor: If either of them falls down,
+                one can help the other up."
+                <span class="verse-ref">Ecclesiastes 4:9-10</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown-section" class="text-center fade-on-scroll">
+        <div class="container">
+            <h2
+                style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2); display:inline-block; padding-bottom:10px;">
+                Counting Down The Blessings</h2>
+
+            <div id="timer" class="countdown-grid">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Schedule -->
+    <section id="events" class="fade-on-scroll">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Order of the Day</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Event 1 -->
+                <div class="event-item">
+                    <span class="event-time">1:00 PM - Arrival</span>
+                    <div class="event-details">
+                        <h3>Procession to Church</h3>
+                        <p>The Groom waits for the Bride at the entrance of the Holy Trinity Cathedral.</p>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-item">
+                    <span class="event-time">2:00 PM - Ceremony</span>
+                    <div class="event-details">
+                        <h3>Holy Matrimony (Teklil)</h3>
+                        <p>The crowning ceremony and exchange of vows conducted by the Head Priest.</p>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-item">
+                    <span class="event-time">5:00 PM - Reception</span>
+                    <div class="event-details">
+                        <h3>Melse & Dinner</h3>
+                        <p>Join us at the Skylight Hotel Grand Ballroom for traditional dinner, music, and celebration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery (Placeholders) -->
+    <section id="gallery" class="fade-on-scroll">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Journey</h2>
+                <p style="margin-bottom: var(--spacing-md); color: var(--c-text-light);">Moments of grace leading to
+                    this day.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="photo_2026-01-22_15-33-09.jpg" alt="Wedding Photo 1"></div>
+                <div class="gallery-item"><img src="photo_2026-01-22_15-33-16.jpg" alt="Wedding Photo 2"></div>
+                <div class="gallery-item"><img src="photo_2026-01-22_15-33-21.jpg" alt="Wedding Photo 3"></div>
+                <div class="gallery-item"><img src="photo_2026-01-22_15-33-26.jpg" alt="Wedding Photo 4"></div>
+                <div class="gallery-item"><img src="photo_2026-01-22_15-33-30.jpg" alt="Wedding Photo 5"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="flower-container" id="flower-rain"></div>
+        <div class="container">
+            <!-- Small SVG Cross -->
+            <svg class="footer-cross" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M45,5 L55,5 L55,35 L85,35 L85,45 L55,45 L55,55 L75,55 L75,75 L55,75 L55,95 L45,95 L45,75 L25,75 L25,55 L45,55 L45,45 L15,45 L15,35 L45,35 Z"
+                    fill="currentColor" />
+            </svg>
+
+            <div class="amharic-quote">
+                "ስለዚህ እግዚአብሔር ያጣመረውን ሰው አይለየው።" <br>
+                <span style="font-size: 0.9rem; font-weight: normal; color: #aaa;">ማቴዎስ 19:6</span>
+            </div>
+
+            <p style="position: relative; z-index: 2;">Thank you for celebrating our union.</p>
+            <p style="font-size: 0.9rem; margin-top: 10px; color: #aaa; position: relative; z-index: 2;">Abel & Mary
+                &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * 1. COUNTDOWN TIMER LOGIC
+         * Sets a target date and updates the DOM elements every second.
+         */
+        const targetDate = new Date("February 1, 2026 14:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("timer").innerHTML = "<div style='grid-column: span 4; font-size: 2rem; color: #D4AF37;'>The Celebration Has Begun!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Helper to add leading zero
+            const fmt = (n) => n < 10 ? '0' + n : n;
+
+            document.getElementById("days").innerText = fmt(days);
+            document.getElementById("hours").innerText = fmt(hours);
+            document.getElementById("minutes").innerText = fmt(minutes);
+            document.getElementById("seconds").innerText = fmt(seconds);
+        }
+
+        // Run immediately then every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /**
+         * 2. SCROLL ANIMATION (INTERSECTION OBSERVER)
+         * Triggers the .visible class when elements scroll into view.
+         */
+        const observerOptions = {
+            threshold: 0.1, // Trigger when 10% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: Stop observing once visible to save resources
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        // Select elements to animate
+        document.querySelectorAll('.fade-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        /**
+         * 3. FLOWER RAIN ANIMATION
+         * Generates falling petals in the footer.
+         */
+        function startFlowerRain() {
+            const container = document.getElementById('flower-rain');
+            if (!container) return;
+
+            const colors = ['', 'red', 'gold']; // empty string is white (default)
+
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+
+                // Randomize color
+                const colorClass = colors[Math.floor(Math.random() * colors.length)];
+                if (colorClass) petal.classList.add(colorClass);
+
+                // Randomize position and size
+                const size = Math.random() * 10 + 5 + 'px'; // 5px to 15px
+                petal.style.width = size;
+                petal.style.height = size;
+                petal.style.left = Math.random() * 100 + '%';
+
+                // Randomize animation duration
+                const duration = Math.random() * 3 + 2 + 's'; // 2s to 5s
+                petal.style.animationDuration = duration;
+
+                container.appendChild(petal);
+
+                // Remove after animation ends
+                setTimeout(() => {
+                    petal.remove();
+                }, parseFloat(duration) * 1000);
+            }, 300); // Create a new petal every 300ms
+        }
+
+        // Initialize flower rain
+        startFlowerRain();
+
+    </script>
+</body>
+
+</html>
