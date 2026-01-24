@@ -590,8 +590,8 @@
     <!-- Header / Hero -->
     <header class="fade-on-scroll">
         <div class="video-background">
-            <video autoplay muted loop playsinline>
-                <source src="grok-video-521ca23d-de42-4c4b-9031-06189be9d2cb.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline poster="photo_2026-01-22_15-33-09.jpg">
+                <source src="video.mp4" type="video/mp4">
             </video>
             <div class="video-overlay"></div>
         </div>
@@ -645,9 +645,9 @@
         <div class="container">
             <p class="blessing-text">
                 እግዚአብሔር ታላቅ ነገር አደረገልን፤
-እኛም ደስ አለን። <br><br>
+                እኛም ደስ አለን። <br><br>
                 God has done great things for us;
-and we are glad."
+                and we are glad."
                 <span class="verse-ref">መዝ 126:3</span>
             </p>
         </div>
@@ -721,11 +721,7 @@ and we are glad."
         </div>
     </footer>
 
-    <script>
-        /**
-         * 1. COUNTDOWN TIMER LOGIC
-         * Sets a target date and updates the DOM elements every second.
-         */
+    <script>         /**          * 1. COUNTDOWN TIMER LOGIC          * Sets a target date and updates the DOM elements every second.          */
         const targetDate = new Date("February 1, 2026 14:00:00").getTime();
 
         function updateCountdown() {
@@ -754,11 +750,7 @@ and we are glad."
         // Run immediately then every second
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
-        /**
-         * 2. SCROLL ANIMATION (INTERSECTION OBSERVER)
-         * Triggers the .visible class when elements scroll into view.
-         */
+         /**          * 2. SCROLL ANIMATION (INTERSECTION OBSERVER)          * Triggers the .visible class when elements scroll into view.          */
         const observerOptions = {
             threshold: 0.1, // Trigger when 10% of element is visible
             rootMargin: "0px 0px -50px 0px"
@@ -778,11 +770,7 @@ and we are glad."
         document.querySelectorAll('.fade-on-scroll').forEach(el => {
             observer.observe(el);
         });
-
-        /**
-         * 3. FLOWER RAIN ANIMATION
-         * Generates falling petals in the footer.
-         */
+         /**          * 3. FLOWER RAIN ANIMATION          * Generates falling petals in the footer.          */
         function startFlowerRain() {
             const container = document.getElementById('flower-rain');
             if (!container) return;
