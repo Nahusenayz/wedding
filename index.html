@@ -458,6 +458,7 @@
             transition: transform 0.3s ease;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .gallery-item img {
@@ -475,6 +476,123 @@
             transform: translateY(-5px);
             z-index: 2;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item::after {
+            content: "View Large";
+            position: absolute;
+            background: rgba(212, 175, 55, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100vh;
+            border: 3px solid var(--c-gold);
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--c-gold);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 20px 15px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(212, 175, 55, 0.5);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                padding: 15px 10px;
+                font-size: 18px;
+            }
+
+            .lightbox-prev {
+                left: -40px;
+            }
+
+            .lightbox-next {
+                right: -40px;
+            }
+
+            .lightbox-close {
+                top: -40px;
+                right: 0;
+                font-size: 30px;
+            }
         }
 
         /* * ==========================================
@@ -577,6 +695,59 @@
             .event-details {
                 border-left: 3px solid var(--c-gold);
                 border-top: none;
+            }
+        }
+
+        /* 3D Footer Image Styles */
+        .footer-3d-image-container {
+            perspective: 1000px;
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            width: 250px;
+            z-index: 2;
+        }
+
+        .footer-3d-image {
+            width: 100%;
+            height: auto;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .footer-3d-image-container:hover .footer-3d-image {
+            transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateZ(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotateZ(2deg);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .footer-3d-image-container {
+                width: 150px;
+                left: 10px;
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-3d-image-container {
+                position: relative;
+                margin: var(--spacing-md) auto;
+                left: 0;
+                bottom: 0;
+                width: 180px;
             }
         }
     </style>
@@ -714,12 +885,27 @@
                 <span style="font-size: 0.9rem; font-weight: normal; color: #aaa;">ማቴዎስ 19:6</span>
             </div>
 
+            <!-- 3D Enhanced Image -->
+            <div class="footer-3d-image-container">
+                <img src="nobg.png" class="footer-3d-image" alt="Special 3D Effect Image">
+            </div>
+
             <p style="position: relative; z-index: 2;">Thank you for celebrating our union.</p>
             <p style="font-size: 0.9rem; margin-top: 10px; color: #aaa; position: relative; z-index: 2;">Abel &amp;
                 Meron
                 &copy; 2026</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span id="lightbox-close" class="lightbox-close">&times;</span>
+            <button id="lightbox-prev" class="lightbox-nav lightbox-prev">&#10094;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="Large View">
+            <button id="lightbox-next" class="lightbox-nav lightbox-next">&#10095;</button>
+        </div>
+    </div>
 
     <script>         /**          * 1. COUNTDOWN TIMER LOGIC          * Sets a target date and updates the DOM elements every second.          */
         const targetDate = new Date("February 1, 2026 14:00:00").getTime();
@@ -750,7 +936,67 @@
         // Run immediately then every second
         setInterval(updateCountdown, 1000);
         updateCountdown();
-         /**          * 2. SCROLL ANIMATION (INTERSECTION OBSERVER)          * Triggers the .visible class when elements scroll into view.          */
+
+        /**
+         * 2. LIGHTBOX LOGIC
+         */
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+
+        let currentIndex = 0;
+        const imageUrls = Array.from(galleryItems).map(img => img.src);
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = imageUrls[currentIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Block scroll
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scroll
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            lightboxImg.src = imageUrls[currentIndex];
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+            lightboxImg.src = imageUrls[currentIndex];
+        }
+
+        galleryItems.forEach((img, index) => {
+            img.parentElement.addEventListener('click', () => openLightbox(index));
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+
+        /**
+         * 3. SCROLL ANIMATION (INTERSECTION OBSERVER)
+         */
         const observerOptions = {
             threshold: 0.1, // Trigger when 10% of element is visible
             rootMargin: "0px 0px -50px 0px"
@@ -770,7 +1016,7 @@
         document.querySelectorAll('.fade-on-scroll').forEach(el => {
             observer.observe(el);
         });
-         /**          * 3. FLOWER RAIN ANIMATION          * Generates falling petals in the footer.          */
+        /**          * 3. FLOWER RAIN ANIMATION          * Generates falling petals in the footer.          */
         function startFlowerRain() {
             const container = document.getElementById('flower-rain');
             if (!container) return;
