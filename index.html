@@ -184,7 +184,7 @@
             width: 100px;
             height: 100px;
             margin-bottom: var(--spacing-md);
-            fill: var(--c-gold);
+            object-fit: contain;
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
             animation: pulse 3s infinite ease-in-out;
             z-index: 2;
@@ -494,7 +494,7 @@
 
         .footer-cross {
             width: 40px;
-            fill: var(--c-gold);
+            height: auto;
             margin-bottom: var(--spacing-sm);
             position: relative;
             z-index: 2;
@@ -629,18 +629,8 @@
             <circle cx="25" cy="95" r="2" fill="var(--c-gold)" />
         </svg>
 
-        <!-- SVG Stylized Ethiopian Cross -->
-        <svg class="hero-cross" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M45,5 L55,5 L55,35 L85,35 L85,45 L55,45 L55,55 L75,55 L75,75 L55,75 L55,95 L45,95 L45,75 L25,75 L25,55 L45,55 L45,45 L15,45 L15,35 L45,35 Z"
-                fill="currentColor" />
-            <circle cx="50" cy="50" r="5" fill="var(--c-cream)" />
-            <rect x="48" y="0" width="4" height="100" fill="currentColor" opacity="0.3" />
-            <rect x="0" y="48" width="100" height="4" fill="currentColor" opacity="0.3" />
-            <!-- Added Detail to Cross -->
-            <rect x="42" y="42" width="16" height="16" fill="none" stroke="var(--c-cream)" stroke-width="1"
-                transform="rotate(45 50 50)" />
-        </svg>
+        <!-- Image-based Ethiopian Cross -->
+        <img src="cross.png" class="hero-cross" alt="Ethiopian Cross">
 
         <span class="subtitle">The Holy Matrimony Of</span>
         <h1>Abel &amp; Meron</h1>
@@ -654,10 +644,11 @@
     <section id="blessing" class="text-center fade-on-scroll">
         <div class="container">
             <p class="blessing-text">
-                "In the name of the Father, and of the Son, and of the Holy Spirit, One God, Amen. <br><br>
-                Two are better than one, because they have a good return for their labor: If either of them falls down,
-                one can help the other up."
-                <span class="verse-ref">Ecclesiastes 4:9-10</span>
+                እግዚአብሔር ታላቅ ነገር አደረገልን፤
+እኛም ደስ አለን። <br><br>
+                God has done great things for us;
+and we are glad."
+                <span class="verse-ref">መዝ 126:3</span>
             </p>
         </div>
     </section>
@@ -715,12 +706,8 @@
     <footer>
         <div class="flower-container" id="flower-rain"></div>
         <div class="container">
-            <!-- Small SVG Cross -->
-            <svg class="footer-cross" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M45,5 L55,5 L55,35 L85,35 L85,45 L55,45 L55,55 L75,55 L75,75 L55,75 L55,95 L45,95 L45,75 L25,75 L25,55 L45,55 L45,45 L15,45 L15,35 L45,35 Z"
-                    fill="currentColor" />
-            </svg>
+            <!-- Image-based Cross -->
+            <img src="cross.png" class="footer-cross" alt="Footer Cross">
 
             <div class="amharic-quote">
                 "ስለዚህ እግዚአብሔር ያጣመረውን ሰው አይለየው።" <br>
@@ -728,8 +715,9 @@
             </div>
 
             <p style="position: relative; z-index: 2;">Thank you for celebrating our union.</p>
-            <p style="font-size: 0.9rem; margin-top: 10px; color: #aaa; position: relative; z-index: 2;">Abel &amp; Meron
-            &copy; 2026</p>
+            <p style="font-size: 0.9rem; margin-top: 10px; color: #aaa; position: relative; z-index: 2;">Abel &amp;
+                Meron
+                &copy; 2026</p>
         </div>
     </footer>
 
